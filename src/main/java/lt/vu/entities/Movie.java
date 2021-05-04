@@ -38,8 +38,11 @@ public class Movie implements Serializable {
     @JoinColumn(name="COMPANY_ID")
     private Company company;
 
-    @ManyToMany(mappedBy = "movies")
-    private Set<Genre> Genres;
+    @ManyToMany
+    @JoinTable(name = "GENRE_MOVIE",
+            joinColumns = @JoinColumn(name = "GENRE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "MOVIE_ID"))
+    private List<Genre> genres;
 
     @Override
     public boolean equals(Object o) {

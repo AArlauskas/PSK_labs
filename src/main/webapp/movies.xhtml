@@ -17,6 +17,9 @@
     </ol>
     <h:form>
         <h:inputText a:placeholder="Title" value="#{companyMovies.movieToCreate.title}" required="true" />
+        <h:selectManyCheckbox  value="#{companyMovies.genresIdsToAdd}">
+            <f:selectItems value="#{genres.allGenres}" var="genre" itemValue="#{genre.id}" itemLabel="#{genre.name}"/>
+        </h:selectManyCheckbox><br/>
         <h:commandButton value="Create movie for a company" action="#{companyMovies.createMovie}" >
             <f:param name="companyId" value="#{companyMovies.company.id}" />
         </h:commandButton>

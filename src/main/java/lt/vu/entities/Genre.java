@@ -11,6 +11,9 @@ import java.util.Set;
 
 @Entity
 @Table(name = "GENRE")
+@NamedQueries({
+        @NamedQuery(name = "Genre.findAll", query = "select c from Genre as c")
+})
 @Getter
 @Setter
 public class Genre implements Serializable {
@@ -26,10 +29,7 @@ public class Genre implements Serializable {
     @Column(name = "NAME")
     private String name;
 
-    @ManyToMany
-    @JoinTable(name = "GENRE_MOVIE",
-    joinColumns = @JoinColumn(name = "GENRE_ID"),
-    inverseJoinColumns = @JoinColumn(name = "MOVIE_ID"))
-    private Set<Movie> movies;
+    @ManyToMany(mappedBy = "genres")
+    private List<Movie> movies;
 
 }
