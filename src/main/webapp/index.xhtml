@@ -19,7 +19,7 @@
     <h2>Genres:</h2>
     <h:form>
         <h:inputText value="#{genres.genreToCreate.name}" required="true" />
-        <h:commandButton value="Add new company" action="#{genres.createGenre}" />
+        <h:commandButton value="Add new genre" action="#{genres.createGenre}" />
     </h:form>
     <ol>
         <ui:repeat value="#{genres.allGenres}" var="genre">

@@ -11,7 +11,7 @@
     <ol>
         <ui:repeat value="#{companyMovies.company.movies}" var="movie">
             <li>
-                <h:outputText value="#{movie.title}" />
+                <h:link value="#{movie.title}" outcome="movieDetails?movieId=#{movie.id}" />
             </li>
         </ui:repeat>
     </ol>

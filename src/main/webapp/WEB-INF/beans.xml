@@ -7,6 +7,13 @@
         bean-discovery-mode="annotated">
 
     <interceptors>
-        <class>lt.vu.interceptors.MethodLogger</class>
+        <class>lt.vu.interceptor.LoggingInterceptor</class>
     </interceptors>
+    <decorators>
+        <class>lt.vu.decorator.RatingAssignerDecorator</class>
+    </decorators>
+    <alternatives>
+        <class>lt.vu.ratingAssigner.RatingAssignerComponentAlt</class>
+        <class>lt.vu.reviewFinder.ReviewFinderExtendedComponent</class>
+    </alternatives>
 </beans>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+>
+<h:head/>
+<h:body>
+    <h2>Movie: #{movieDetails.movie.title}</h2>
+    <h4>Genres:</h4>
+    <ol>
+        <ui:repeat value="#{movieDetails.movie.genres}" var="genre">
+            <li><h:link value="#{genre.name}" outcome="genres?genreId=#{genre.id}" /></li>
+        </ui:repeat>
+    </ol>
+    <h:form>
+        <h:outputText value="Rating: #{movieDetails.movie.rating}"/>
+        <h:commandButton
+            value="Assign rating"
+            action="#{movieDetails.assignRating}">
+            <f:param name="movieId" value="#{movieDetails.movie.id}" />
+        </h:commandButton>
+    </h:form>
+
+    <h:form>
+        <h:outputText value="#{findReview.findingRatingTaskStatus}" />
+        <h:commandButton
+                value="Find a review"
+                disabled="#{findReview.findingInProgress}"
+                action="#{'movieDetails?faces-redirect=true&amp;movieId='.concat(movieDetails.movie.id)}"
+                actionListener="#{findReview.findReview}"
+        >
+            <f:param name="movieId" value="#{movieDetails.movie.id}" />
+        </h:commandButton>
+    </h:form>
+    <h:form>
+        <h:outputText value="Movie's title: "/>
+        <h:inputText value="#{movieDetails.movie.title}" required="true"/>
+        <h:commandButton
+                value="Update with sleep"
+                action="#{'movieDetails?faces-redirect=true&amp;movieId='.concat(movieDetails.movie.id)}"
+                actionListener="#{movieDetails.updateMovieTitle(true)}"
+        >
+            <f:param name="movieId" value="#{movieDetails.movie.id}" />
+        </h:commandButton>
+        <h:commandButton
+                value="Update"
+                action="#{'movieDetails?faces-redirect=true&amp;movieId='.concat(movieDetails.movie.id)}"
+                actionListener="#{movieDetails.updateMovieTitle(false)}"
+        >
+            <f:param name="movieId" value="#{movieDetails.movie.id}" />
+        </h:commandButton>
+        <br />
+        <h:outputText value="#{errorComponent.errorStatus}"/>
+    </h:form>
+</h:body>
+</html>

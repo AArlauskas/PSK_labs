@@ -34,4 +34,14 @@ public class MoviesDAO {
         return em.find(Movie.class,id);
     }
 
+    public Movie update(Movie movie)
+    {
+        return em.merge(movie);
+    }
+
+    public void flush()
+    {
+        em.flush();
+    }
+
 }

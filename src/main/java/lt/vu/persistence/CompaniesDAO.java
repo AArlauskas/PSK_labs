@@ -32,4 +32,11 @@ public class CompaniesDAO {
     {
         return em.find(Company.class,id);
     }
+    public Company update(Company company) {
+        return em.merge(company);
+    }
+
+    public void delete(Company company) {
+        em.remove(company);
+    }
 }

@@ -7,7 +7,7 @@ import lombok.Setter;
 import lt.vu.entities.Company;
 import lt.vu.entities.Genre;
 import lt.vu.entities.Movie;
-import lt.vu.interceptors.LoggedInvocation;
+import lt.vu.interceptor.Logged;
 import lt.vu.persistence.CompaniesDAO;
 import lt.vu.persistence.GenresDAO;
 import lt.vu.persistence.MoviesDAO;
@@ -54,8 +54,8 @@ public class CompanyMovies implements Serializable {
         this.company = companiesDAO.findOne(companyId);
     }
 
+    @Logged
     @Transactional
-    @LoggedInvocation
     public String createMovie()
     {
         List<Genre> genreList = new ArrayList<>();

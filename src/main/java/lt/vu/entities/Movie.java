@@ -25,6 +25,9 @@ public class Movie implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
+    @Version
+    private Integer version;
+
     @Column(name = "TITLE")
     private String title;
 
@@ -40,8 +43,8 @@ public class Movie implements Serializable {
 
     @ManyToMany
     @JoinTable(name = "GENRE_MOVIE",
-            joinColumns = @JoinColumn(name = "GENRE_ID"),
-            inverseJoinColumns = @JoinColumn(name = "MOVIE_ID"))
+            joinColumns = @JoinColumn(name = "MOVIE_ID"),
+            inverseJoinColumns = @JoinColumn(name = "GENRE_ID"))
     private List<Genre> genres;
 
     @Override
@@ -57,5 +60,16 @@ public class Movie implements Serializable {
     public int hashCode() {
         return Objects.hash(id, title);
     }
+
+//    @Override
+//    public String toString() {
+//        StringBuilder name = new StringBuilder(title + "(");
+//        for(Genre g : genres)
+//        {
+//            name.append(g.getName()).append(",");
+//        }
+//        name.append(")");
+//        return name.toString();
+//    }
 
 }
